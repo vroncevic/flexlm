@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# @brief   Licenses Server Management
+# @brief   Licenses Server Manager
 # @version ver.1.0
 # @date    Mon Jun 01 18:36:32 2015
 # @company Frobas IT Department, www.frobas.com 2015
@@ -13,32 +13,31 @@ UTIL_LOG=$UTIL/log
 
 . $UTIL/bin/checkroot.sh
 . $UTIL/bin/checktool.sh
-. $UTIL/bin/checkcfg.sh
+. $UTIL/bin/loadutilconf.sh
 . $UTIL/bin/checkop.sh
 . $UTIL/bin/hash.sh
-. $UTIL/bin/logging.sh
 . $UTIL/bin/usage.sh
 . $UTIL/bin/devel.sh
 
-TOOL_NAME=flexlm
-TOOL_VERSION=ver.1.0
-TOOL_HOME=$UTIL_ROOT/$TOOL_NAME/$TOOL_VERSION
-TOOL_CFG=$TOOL_HOME/conf/$TOOL_NAME.cfg
-TOOL_LOG=$TOOL_HOME/log
+FLEXLM_TOOL=flexlm
+FLEXLM_VERSION=ver.1.0
+FLEXLM_HOME=$UTIL_ROOT/$FLEXLM_TOOL/$FLEXLM_VERSION
+FLEXLM_CFG=$FLEXLM_HOME/conf/$FLEXLM_TOOL.cfg
+FLEXLM_LOG=$FLEXLM_HOME/log
 
 declare -A FLEXLM_USAGE=(
-	[TOOL_NAME]="__$TOOL_NAME"
+	[TOOL_NAME]="__$FLEXLM_TOOL"
 	[ARG1]="[COMMAND]     start | stop | restart | status"
 	[ARG2]="[VENDOR_NAME] cadence | mentor"
 	[EX-PRE]="# Start license server"
-	[EX]="__$TOOL_NAME start mentor"	
+	[EX]="__$FLEXLM_TOOL start mentor"
 )
 
 declare -A CHECKLIC_USAGE=(
 	[TOOL_NAME]="__checklic"
 	[ARG1]="[PORT_NUMBER] Port number for license"
 	[EX-PRE]="# Check license on port 5280"
-	[EX]="__checklic 5280"	
+	[EX]="__checklic 5280"
 )
 
 declare -A STOPLIC_USAGE=(
@@ -56,64 +55,53 @@ declare -A STARTLIC_USAGE=(
 	[EX]="__startlic \$LICENSE_FILE \$LOG_FILE"
 )
 
-declare -A LOG=(
-	[TOOL]="$TOOL_NAME"
-	[FLAG]="info"
-	[PATH]="$TOOL_LOG"
-	[MSG]=""
-)
+TOOL_DBG="false"
 
-TOOL_DEBUG="false"
-
-FLEXLM_HOME=/opt/flexlm
+FLEXLM_HOME=/data/apps/flexlm
 FLEXLM_VERSION=ver.11.12.1
 FLEXLM_ARCH=x86_64
 FLEXLM_HOST=$(hostname)
-FLEXLM_LIC_CONFIG="$TOOL_HOME/conf/licenses.cfg"
-declare -A configurations=()
+FLEXLM_LIC_CONFIG="$FLEXLM_HOME/conf/licenses.cfg"
+declare -A cfgflelm=()
 FLEXLM_OP_LIST=( start stop restart status )
 
 #
 # @brief  Load licenses parameters from configuration file
-# @param  Valie required path of configuration file
+# @param  Value required path of configuration file
 # @retval Success return 0, else 1
 #
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
 # __loadlicenses "$CONFIGURATION_FILE"
-# STATUS=$?
+# local STATUS=$?
 #
 # if [ "$STATUS" -eq "$SUCCESS" ]; then
 #	# true
+#	# notify admin | user
 # else
 #	# false
+#	# return $NOT_SUCCESS
+#	# or
+#	# exit 128
 # fi
 #
 function __loadlicenses() {
-	CONFIGURATION_FILE=$1
+	local CONFIGURATION_FILE=$1
 	if [ -n "$CONFIGURATION_FILE" ]; then
-		if [ "$TOOL_DEBUG" == "true" ]; then
-			printf "%s\n" "[flexlm load configuration file]"
+		local FUNC=${FUNCNAME[0]}
+		local MSG=""
+		if [ "$TOOL_DBG" == "true" ]; then
+			MSG="Loading config file [$CONFIGURATION_FILE]"
+			printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
 		fi
-		__checkcfg "$CONFIGURATION_FILE"
-		STATUS=$?
+		__loadutilconf "$CONFIGURATION_FILE" cfgflelm
+		local STATUS=$?
 		if [ "$STATUS" -eq "$SUCCESS" ]; then
-			if [ "$TOOL_DEBUG" == "true" ]; then
-				printf "%s\n" "Loading configuration"
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DEND" "$FLEXLM_TOOL" "$FUNC" "Done"
 			fi
-			__get_configuration "$CONFIGURATION_FILE" configurations
-			STATUS=$?
-			if [ "$STATUS" -eq "$SUCCESS" ]; then
-				if [ "$TOOL_DEBUG" == "true" ]; then
-					printf "%s\n\n" "[Done]"
-				fi
-				return $SUCCESS
-			fi
-		fi
-		if [ "$TOOL_DEBUG" == "true" ]; then
-			printf "%s\n" "Check file [$TOOL_CFG]"
-			printf "%s\n\n" "[Done]"
+			return $SUCCESS
 		fi
 	fi
     return $NOT_SUCCESS
@@ -128,32 +116,35 @@ function __loadlicenses() {
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
 # __checklic "$LICENSE_PORT"
-# STATUS=$?
+# local STATUS=$?
 #
 # if [ "$STATUS" -eq "$SUCCESS" ]; then
 #	# true
+#	# notify admin | user
 # else
 #	# false
+#	# return $NOT_SUCCESS
+#	# or
+#	# exit 128
 # fi
 #
 function __checklic() {
-    LICENSE_PORT=$1
+    local LICENSE_PORT=$1
 	if [ -n "$LICENSE_PORT" ]; then
-		if [ "$TOOL_DEBUG" == "true" ]; then
-			printf "%s\n" "[Checking license]"
+		local FUNC=${FUNCNAME[0]}
+		local MSG=""
+		if [ "$TOOL_DBG" == "true" ]; then
+			MSG="Checking license [$LICENSE_PORT]"
+			printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
 		fi
-		LMUTIL="$FLEXLM_HOME/$FLEXLM_VERSION/$FLEXLM_ARCH/lmutil"
+		local LMUTIL="$FLEXLM_HOME/$FLEXLM_VERSION/$FLEXLM_ARCH/lmutil"
 		__checktool "$LMUTIL"
-		STATUS=$?
+		local STATUS=$?
 		if [ "$STATUS" -eq "$SUCCESS" ]; then
-			if [ "$TOOL_DEBUG" == "true" ]; then
-				printf "%s\n" "Check license on port [$LICENSE_PORT]"
-			fi
-			LICENSE_ARGS="$LICENSE_PORT@$FLEXLM_HOST"
+			local LICENSE_ARGS="$LICENSE_PORT@$FLEXLM_HOST"
 	        eval "$LMUTIL lmstat -a -c $LICENSE_ARGS"
-			if [ "$TOOL_DEBUG" == "true" ]; then
-				printf "%s\n" "CMD: $LMUTIL lmstat -a -c $LICENSE_ARGS"
-				printf "%s\n\n" "[Done]"
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DEND" "$FLEXLM_TOOL" "$FUNC" "Done"
 			fi
 	        return $SUCCESS
 		fi 
@@ -172,37 +163,41 @@ function __checklic() {
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
 # __startlic "$LIC_FILE" "$LOG_FILE"
-# STATUS=$?
+# local STATUS=$?
 #
 # if [ "$STATUS" -eq "$SUCCESS" ]; then
 #	# true
+#	# notify admin | user
 # else
 #	# false
+#	# return $NOT_SUCCESS
+#	# or
+#	# exit 128
 # fi
 #
 function __startlic() {
-    LIC_FILE=$1
-    LOG_FILE=$2
+    local LIC_FILE=$1
+    local LOG_FILE=$2
     if [ -n "$LIC_FILE" ] && [ -n "$LOG_FILE" ]; then
-		if [ "$TOOL_DEBUG" == "true" ]; then
-			printf "%s\n" "[Start license daemon]"
+		local FUNC=${FUNCNAME[0]}
+		local MSG=""
+		if [ "$TOOL_DBG" == "true" ]; then
+			MSG="Start license daemon [$LIC_FILE] [$LOG_FILE]"
+			printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
 		fi
-		LMGRD="$FLEXLM_HOME/$FLEXLM_VERSION/$FLEXLM_ARCH/lmgrd"
+		local LMGRD="$FLEXLM_HOME/$FLEXLM_VERSION/$FLEXLM_ARCH/lmgrd"
         __checktool "$LMGRD"
-        STATUS=$?
+        local STATUS=$?
         if [ "$STATUS" -eq "$SUCCESS" ]; then
             if [ -e "$LIC_FILE" ] && [ -f "$LIC_FILE" ]; then 
-				if [ "$TOOL_DEBUG" == "true" ]; then
-					printf "%s\n" "Starting license daemon"
-				fi
                 eval "$LMGRD -c $LIC_FILE -l $LOG_FILE"
-				if [ "$TOOL_DEBUG" == "true" ]; then
-					printf "%s\n" "CMD: $LMGRD -c $LIC_FILE -l $LOG_FILE"
-					printf "%s\n\n" "[Done]"
+				if [ "$TOOL_DBG" == "true" ]; then
+					printf "$DEND" "$FLEXLM_TOOL" "$FUNC" "Done"
 				fi
                 return $SUCCESS
             fi
-            printf "%s\n\n" "Check LM_LICENSE_FILE [$LIC_FILE]"
+            MSG="Check LM_LICENSE_FILE [$LIC_FILE]"
+			printf "$SEND" "$FLEXLM_TOOL" "$MSG"
         fi
         return $NOT_SUCCESS
     fi
@@ -219,32 +214,35 @@ function __startlic() {
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
 # __stoplic "$LICENSE_PORT"
-# STATUS=$?
+# local STATUS=$?
 #
 # if [ "$STATUS" -eq "$SUCCESS" ]; then
 #	# true
+#	# notify admin | user
 # else
 #	# false
+#	# return $NOT_SUCCESS
+#	# or
+#	# exit 128
 # fi
 #
 function __stoplic() {
-    LICENSE_PORT=$1
+    local LICENSE_PORT=$1
     if [ -n "$LICENSE_PORT" ]; then
-		if [ "$TOOL_DEBUG" == "true" ]; then
-			printf "%s\n" "[Stop license daemon]"
+		local FUNC=${FUNCNAME[0]}
+		local MSG=""
+		if [ "$TOOL_DBG" == "true" ]; then
+			MSG="Stop license daemon [$LICENSE_PORT]"
+			printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
 		fi
-		LMUTIL="$FLEXLM_HOME/$FLEXLM_VERSION/$FLEXLM_ARCH/lmutil"
+		local LMUTIL="$FLEXLM_HOME/$FLEXLM_VERSION/$FLEXLM_ARCH/lmutil"
         __checktool "$LMUTIL"
-        STATUS=$?
+        local STATUS=$?
         if [ "$STATUS" -eq "$SUCCESS" ]; then
-			if [ "$TOOL_DEBUG" == "true" ]; then
-				printf "%s\n" "Stopping license daemon on port [$LICENSE_PORT]"
-			fi
-			LICENSE_ARGS="$LICENSE_PORT@$FLEXLM_HOST"
+			local LICENSE_ARGS="$LICENSE_PORT@$FLEXLM_HOST"
             eval "$LMUTIL lmdown -c $LICENSE_ARGS"
-			if [ "$TOOL_DEBUG" == "true" ]; then
-				printf "%s\n" "CMD: $LMUTIL lmdown -c $LICENSE_ARGS"
-				printf "%s\n\n" "[Done]"
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DEND" "$FLEXLM_TOOL" "$FUNC" "Done"
 			fi
             return $SUCCESS
         fi
@@ -255,8 +253,15 @@ function __stoplic() {
 }
 
 #
-# @brief  Main function 
-# @params Values required operation and vendor type of license
+# @brief   Main function 
+# @params  Values required operation and vendor type of license
+# @exitval Function __flexlm exit with integer value
+# 			0   - success operation
+#			128 - missing argument(s)
+#			129 - missing configuration file
+#			130 - error loading configuration
+#			131 - wrong second argument
+#			132 - wrong first argument
 #
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -264,18 +269,20 @@ function __stoplic() {
 # __flexlm $OPERATION $LICENSE_PORT
 #
 function __flexlm() {
-    OPERATION=$1
-    VENDOR_LICENSE=$2
+    local OPERATION=$1
+    local VENDOR_LICENSE=$2
     if [ -n "$OPERATION" ] && [ -n "$VENDOR_LICENSE" ]; then
+		local FUNC=${FUNCNAME[0]}
+		local MSG=""
 		__checkcfg "$FLEXLM_LIC_CONFIG"
-		STATUS=$?
+		local STATUS=$?
 		if [ "$STATUS" -eq "$SUCCESS" ]; then
 			__loadlicenses "$FLEXLM_LIC_CONFIG"
 			STATUS=$?
 			if [ "$STATUS" -eq "$SUCCESS" ]; then
-				LFILE="LICENSE_FILE_"
-				LPORT="LICENSE_PORT_"
-				LLOG="LICENSE_LOG_"
+				local LFILE="LICENSE_FILE_"
+				local LPORT="LICENSE_PORT_"
+				local LLOG="LICENSE_LOG_"
 				if [ "$VENDOR_LICENSE" == "mentor" ]; then
 					SUFIX=$(echo $VENDOR_LICENSE | awk '{print toupper($0)}')
 					LFILE="LICENSE_FILE_${SUFIX}"
@@ -287,56 +294,33 @@ function __flexlm() {
 					LPORT="LICENSE_PORT_${SUFIX}"
 					LLOG="LICENSE_LOG_${SUFIX}"
 				else
-					if [ "$TOOL_DEBUG" == "true" ]; then
-						printf "%s\n\n" "Check argument [$VENDOR_LICENSE]"
+					if [ "$TOOL_DBG" == "true" ]; then
+						MSG="Check argument [$VENDOR_LICENSE]"
+						printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
 					fi
 					__usage $FLEXLM_USAGE
 					exit 131
 				fi
-				LIC_FILE=$(__get_item "$LFILE" configurations)
-				LIC_PORT=$(__get_item "$LPORT" configurations)
-				LOG_FILE=$(__get_item "$LLOG" configurations)
+				local LIC_FILE=$(__get_item "$LFILE" cfgflelm)
+				local LIC_PORT=$(__get_item "$LPORT" cfgflelm)
+				local LOG_FILE=$(__get_item "$LLOG" cfgflelm)
 				__checkop "$OPERATION" "${FLEXLM_OP_LIST[*]}"
 				STATUS=$?
 				if [ "$STATUS" -eq "$SUCCESS" ]; then
 					case "$OPERATION" in
-						"start") 	
-							if [ "$TOOL_DEBUG" == "true" ]; then
-								printf "%s\n" "Starting $VENDOR_LICENSE license"
-							fi	
+						"start")
 							__startlic "$LIC_FILE" "$LOG_FILE"
-							if [ "$TOOL_DEBUG" == "true" ]; then
-								printf "%s\n\n" "[Done]"
-							fi
 							;;
-						"stop")	  
-							if [ "$TOOL_DEBUG" == "true" ]; then
-								printf "%s\n" "Stoping $VENDOR_LICENSE license"
-							fi
+						"stop")
 							__stoplic $LIC_PORT
-							if [ "$TOOL_DEBUG" == "true" ]; then
-								printf "%s\n\n" "[Done]"
-							fi
 							;;
 						"restart")
-							if [ "$TOOL_DEBUG" == "true" ]; then
-								printf "%s\n\n" "Restart $VENDOR_LICENSE license"
-							fi
 							__stoplic $LIC_PORT
 							sleep 2
-							__startlic "$LIC_FILE" "$LOG_FILE"
-							if [ "$TOOL_DEBUG" == "true" ]; then
-								printf "%s\n\n" "[Done]"
-							fi	
+							__startlic "$LIC_FILE" "$LOG_FILE"	
 							;;
-						"status")	
-							if [ "$TOOL_DEBUG" == "true" ]; then
-								printf "%s\n" "Checking $VENDOR_LICENSE license"
-							fi
+						"status")
 							__checklic $LIC_PORT
-							if [ "$TOOL_DEBUG" == "true" ]; then
-								printf "%s\n\n" "[Done]"
-							fi
 							;;
 					esac
 					exit 0
@@ -364,7 +348,7 @@ function __flexlm() {
 #			131 - wrong second argument
 #			132 - wrong first argument
 #
-printf "\n%s\n%s\n\n" "$TOOL_NAME $TOOL_VERSION" "`date`"
+printf "\n%s\n%s\n\n" "$FLEXLM_TOOL $FLEXLM_VERSION" "`date`"
 __checkroot
 STATUS=$?
 if [ "$STATUS" -eq "$SUCCESS" ]; then
@@ -372,4 +356,3 @@ if [ "$STATUS" -eq "$SUCCESS" ]; then
 fi
 
 exit 127
-
