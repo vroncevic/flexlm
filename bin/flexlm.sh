@@ -13,8 +13,11 @@ UTIL_LOG=$UTIL/log
 
 . $UTIL/bin/checkroot.sh
 . $UTIL/bin/checktool.sh
+. $UTIL/bin/loadconf.sh
 . $UTIL/bin/loadutilconf.sh
 . $UTIL/bin/checkop.sh
+. $UTIL/bin/sendmail.sh
+. $UTIL/bin/logging.sh
 . $UTIL/bin/hash.sh
 . $UTIL/bin/usage.sh
 . $UTIL/bin/devel.sh
@@ -55,15 +58,14 @@ declare -A STARTLIC_USAGE=(
 	[EX]="__startlic \$LICENSE_FILE \$LOG_FILE"
 )
 
-TOOL_DBG="false"
+declare -A LOG=(
+	[TOOL]="$FLEXLM_TOOL"
+	[FLAG]="info"
+	[PATH]="$FLEXLM_LOG"
+	[MSG]=""
+)
 
-FLEXLM_HOME=/data/apps/flexlm
-FLEXLM_VERSION=ver.11.12.1
-FLEXLM_ARCH=x86_64
-FLEXLM_HOST=$(hostname)
-FLEXLM_LIC_CONFIG="$FLEXLM_HOME/conf/licenses.cfg"
-declare -A cfgflelm=()
-FLEXLM_OP_LIST=( start stop restart status )
+TOOL_DBG="false"
 
 #
 # @brief  Load licenses parameters from configuration file
@@ -91,18 +93,36 @@ function __loadlicenses() {
 	if [ -n "$CONFIGURATION_FILE" ]; then
 		local FUNC=${FUNCNAME[0]}
 		local MSG=""
+		MSG="Loading config file [$CONFIGURATION_FILE]"
 		if [ "$TOOL_DBG" == "true" ]; then
-			MSG="Loading config file [$CONFIGURATION_FILE]"
-			printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
+			printf "$DSTA" "$OSSL_TOOL" "$FUNC" "$MSG"
+		else
+			printf "$SEND" "[$OSSL_TOOL]" "$MSG"
 		fi
-		__loadutilconf "$CONFIGURATION_FILE" cfgflelm
+		__loadutilconf "$CONFIGURATION_FILE" cfgflexlm
 		local STATUS=$?
 		if [ "$STATUS" -eq "$SUCCESS" ]; then
 			if [ "$TOOL_DBG" == "true" ]; then
-				printf "$DEND" "$FLEXLM_TOOL" "$FUNC" "Done"
+				printf "$DSTA" "$OSSL_TOOL" "$FUNC" "Done"
+			else
+				printf "$SEND" "[$OSSL_TOOL]" "Done"
+			fi
+			if [ "${configflexlm[LOGGING]}" == "true" ]; then
+				LOG[MSG]=$MSG
+				LOG[FLAG]="info"
+				__logging $LOG
 			fi
 			return $SUCCESS
 		fi
+	fi
+	MSG="Missing configuration file $CONFIGURATION_FILE"
+	if [ "${configflexlm[LOGGING]}" == "true" ]; then
+		LOG[MSG]=$MSG
+		LOG[FLAG]="error"
+		__logging $LOG
+	fi
+	if [ "${configflexlm[EMAILING]}" == "true" ]; then
+		__sendmail "$MSG" "${configflexlm[ADMIN_EMAIL]}"
 	fi
     return $NOT_SUCCESS
 }
@@ -133,21 +153,39 @@ function __checklic() {
 	if [ -n "$LICENSE_PORT" ]; then
 		local FUNC=${FUNCNAME[0]}
 		local MSG=""
-		if [ "$TOOL_DBG" == "true" ]; then
-			MSG="Checking license [$LICENSE_PORT]"
-			printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
-		fi
 		local LMUTIL="$FLEXLM_HOME/$FLEXLM_VERSION/$FLEXLM_ARCH/lmutil"
 		__checktool "$LMUTIL"
 		local STATUS=$?
 		if [ "$STATUS" -eq "$SUCCESS" ]; then
+			MSG="Checking license [$LICENSE_PORT]"
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
+			else
+				printf "$SEND" "[$FLEXLM_TOOL]" "$MSG"
+			fi
+			if [ "${configflexlm[LOGGING]}" == "true" ]; then
+				LOG[MSG]=$MSG
+				LOG[FLAG]="info"
+				__logging $LOG
+			fi
 			local LICENSE_ARGS="$LICENSE_PORT@$FLEXLM_HOST"
 	        eval "$LMUTIL lmstat -a -c $LICENSE_ARGS"
 			if [ "$TOOL_DBG" == "true" ]; then
-				printf "$DEND" "$FLEXLM_TOOL" "$FUNC" "Done"
+				printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "Done"
+			else
+				printf "$SEND" "[$FLEXLM_TOOL]" "Done"
 			fi
 	        return $SUCCESS
 		fi 
+		MSG="Missing external tool $LMUTIL"
+		if [ "${configflexlm[LOGGING]}" == "true" ]; then
+			LOG[MSG]=$MSG
+			LOG[FLAG]="error"
+			__logging $LOG
+		fi
+		if [ "${configflexlm[EMAILING]}" == "true" ]; then
+			__sendmail "$MSG" "${configflexlm[ADMIN_EMAIL]}"
+		fi
 		return $NOT_SUCCESS
 	fi
 	__usage $CHECKLIC_USAGE
@@ -181,24 +219,54 @@ function __startlic() {
     if [ -n "$LIC_FILE" ] && [ -n "$LOG_FILE" ]; then
 		local FUNC=${FUNCNAME[0]}
 		local MSG=""
-		if [ "$TOOL_DBG" == "true" ]; then
-			MSG="Start license daemon [$LIC_FILE] [$LOG_FILE]"
-			printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
-		fi
 		local LMGRD="$FLEXLM_HOME/$FLEXLM_VERSION/$FLEXLM_ARCH/lmgrd"
         __checktool "$LMGRD"
         local STATUS=$?
         if [ "$STATUS" -eq "$SUCCESS" ]; then
             if [ -e "$LIC_FILE" ] && [ -f "$LIC_FILE" ]; then 
+				MSG="Start license daemon [$LIC_FILE] [$LOG_FILE]"
+				if [ "$TOOL_DBG" == "true" ]; then
+					printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
+				else
+					printf "$SEND" "[$FLEXLM_TOOL]" "$MSG"
+				fi
+				if [ "${configflexlm[LOGGING]}" == "true" ]; then
+					LOG[MSG]=$MSG
+					LOG[FLAG]="info"
+					__logging $LOG
+				fi
                 eval "$LMGRD -c $LIC_FILE -l $LOG_FILE"
 				if [ "$TOOL_DBG" == "true" ]; then
-					printf "$DEND" "$FLEXLM_TOOL" "$FUNC" "Done"
+					printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "Done"
+				else
+					printf "$SEND" "[$FLEXLM_TOOL]" "Done"
 				fi
                 return $SUCCESS
             fi
-            MSG="Check LM_LICENSE_FILE [$LIC_FILE]"
-			printf "$SEND" "$FLEXLM_TOOL" "$MSG"
+            MSG="Please check LM_LICENSE_FILE [$LIC_FILE]"
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
+			else
+				printf "$SEND" "[$FLEXLM_TOOL]" "$MSG"
+			fi
+			if [ "${configflexlm[LOGGING]}" == "true" ]; then
+				LOG[MSG]=$MSG
+				LOG[FLAG]="error"
+				__logging $LOG
+			fi
+			if [ "${configflexlm[EMAILING]}" == "true" ]; then
+				__sendmail "$MSG" "${configflexlm[ADMIN_EMAIL]}"
+			fi
         fi
+		MSG="Missing external tool $LMGRD"
+		if [ "${configflexlm[LOGGING]}" == "true" ]; then
+			LOG[MSG]=$MSG
+			LOG[FLAG]="error"
+			__logging $LOG
+		fi
+		if [ "${configflexlm[EMAILING]}" == "true" ]; then
+			__sendmail "$MSG" "${configflexlm[ADMIN_EMAIL]}"
+		fi
         return $NOT_SUCCESS
     fi
     __usage $STARTLIC_USAGE
@@ -231,21 +299,44 @@ function __stoplic() {
     if [ -n "$LICENSE_PORT" ]; then
 		local FUNC=${FUNCNAME[0]}
 		local MSG=""
-		if [ "$TOOL_DBG" == "true" ]; then
-			MSG="Stop license daemon [$LICENSE_PORT]"
-			printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
-		fi
 		local LMUTIL="$FLEXLM_HOME/$FLEXLM_VERSION/$FLEXLM_ARCH/lmutil"
         __checktool "$LMUTIL"
         local STATUS=$?
         if [ "$STATUS" -eq "$SUCCESS" ]; then
 			local LICENSE_ARGS="$LICENSE_PORT@$FLEXLM_HOST"
+			MSG="Stop license daemon [$LICENSE_PORT]"
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
+			else
+				printf "$SEND" "[$FLEXLM_TOOL]" "$MSG"
+			fi
+			if [ "${configflexlm[LOGGING]}" == "true" ]; then
+				LOG[MSG]=$MSG
+				LOG[FLAG]="info"
+				__logging $LOG
+			fi
             eval "$LMUTIL lmdown -c $LICENSE_ARGS"
 			if [ "$TOOL_DBG" == "true" ]; then
-				printf "$DEND" "$FLEXLM_TOOL" "$FUNC" "Done"
+				printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "Done"
+			else
+				printf "$SEND" "[$FLEXLM_TOOL]" "Done"
+			fi
+			if [ "${configflexlm[LOGGING]}" == "true" ]; then
+				LOG[MSG]=$MSG
+				LOG[FLAG]="info"
+				__logging $LOG
 			fi
             return $SUCCESS
         fi
+		MSG="Missing external tool $LMUTIL"
+		if [ "${configflexlm[LOGGING]}" == "true" ]; then
+			LOG[MSG]=$MSG
+			LOG[FLAG]="error"
+			__logging $LOG
+		fi
+		if [ "${configflexlm[EMAILING]}" == "true" ]; then
+			__sendmail "$MSG" "${configflexlm[ADMIN_EMAIL]}"
+		fi
         return $NOT_SUCCESS
     fi 
 	__usage $STOPLIC_USAGE
@@ -274,10 +365,34 @@ function __flexlm() {
     if [ -n "$OPERATION" ] && [ -n "$VENDOR_LICENSE" ]; then
 		local FUNC=${FUNCNAME[0]}
 		local MSG=""
-		__checkcfg "$FLEXLM_LIC_CONFIG"
+		FLEXLM_HOST=$(hostname)
+		FLEXLM_OP_LIST=( start stop restart status )
+		declare -A configflexlm=()
+		__loadconf $FLEXLM_CFG configflexlm
 		local STATUS=$?
+		if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
+			MSG="Failed to load tool script configuration"
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
+			else
+				printf "$SEND" "[$FLEXLM_TOOL]" "$MSG"
+			fi
+			exit 129
+		fi
+		declare -A configflexlmutil=()
+		__loadutilconf $FLEXLM_UTIL_CFG configflexlmutil
+		STATUS=$?
+		if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
+			MSG="Failed to load tool script utilities configuration"
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
+			else
+				printf "$SEND" "[$FLEXLM_TOOL]" "$MSG"
+			fi
+			exit 130
+		fi
 		if [ "$STATUS" -eq "$SUCCESS" ]; then
-			__loadlicenses "$FLEXLM_LIC_CONFIG"
+			__loadlicenses "$configflexlmutil{FLEXLM_LIC_CONFIG}"
 			STATUS=$?
 			if [ "$STATUS" -eq "$SUCCESS" ]; then
 				local LFILE="LICENSE_FILE_"
@@ -294,16 +409,18 @@ function __flexlm() {
 					LPORT="LICENSE_PORT_${SUFIX}"
 					LLOG="LICENSE_LOG_${SUFIX}"
 				else
+					MSG="Please check argument [$VENDOR_LICENSE]"
 					if [ "$TOOL_DBG" == "true" ]; then
-						MSG="Check argument [$VENDOR_LICENSE]"
 						printf "$DSTA" "$FLEXLM_TOOL" "$FUNC" "$MSG"
+					else
+						printf "$SEND" "[$FLEXLM_TOOL]" "$MSG"
 					fi
 					__usage $FLEXLM_USAGE
-					exit 131
+					exit 132
 				fi
-				local LIC_FILE=$(__get_item "$LFILE" cfgflelm)
-				local LIC_PORT=$(__get_item "$LPORT" cfgflelm)
-				local LOG_FILE=$(__get_item "$LLOG" cfgflelm)
+				local LIC_FILE=$(__get_item "$LFILE" cfgflexlm)
+				local LIC_PORT=$(__get_item "$LPORT" cfgflexlm)
+				local LOG_FILE=$(__get_item "$LLOG" cfgflexlm)
 				__checkop "$OPERATION" "${FLEXLM_OP_LIST[*]}"
 				STATUS=$?
 				if [ "$STATUS" -eq "$SUCCESS" ]; then
@@ -326,11 +443,11 @@ function __flexlm() {
 					exit 0
 				fi
 				__usage $FLEXLM_USAGE
-				exit 132
+				exit 133
 			fi
 			exit 130
 		fi
-		exit 129
+		exit 131
     fi
 	__usage $FLEXLM_USAGE
 	exit 128
@@ -340,13 +457,14 @@ function __flexlm() {
 # @brief   Main entry point
 # @params  required values operation and vendor type of license
 # @exitval Script tool flexlm exit with integer value
-#			0   - success operation 
-# 			127 - run as root user
-#			128 - missing argument
-#			129 - missing configuration file
-#			130 - error loading configuration
-#			131 - wrong second argument
-#			132 - wrong first argument
+#			0   - tool finished with success operation 
+# 			127 - run tool script as root user from cli
+#			128 - missing argument(s) from cli 
+#			129 - failed to load tool script configuration from file 
+#			130 - failed to load configuration file with licenses 
+#			131 - failed to load tool script utilities configuration from file
+#			132 - wrong vendor argument
+#			133 - wrong operation to be done
 #
 printf "\n%s\n%s\n\n" "$FLEXLM_TOOL $FLEXLM_VERSION" "`date`"
 __checkroot
@@ -356,3 +474,4 @@ if [ "$STATUS" -eq "$SUCCESS" ]; then
 fi
 
 exit 127
+
