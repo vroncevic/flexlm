@@ -136,7 +136,7 @@ function __loadlicenses() {
 }
 
 #
-# @brief  Check licenses
+# @brief  Check licenses (status)
 # @param  Valie required port number
 # @retval Success return 0, else 1
 #
