@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# @brief   Licenses Server Manager
+# @brief   Licenses Server Manager (wrapper)
 # @version ver.1.0
 # @date    Mon Jun 01 18:36:32 2015
 # @company Frobas IT Department, www.frobas.com 2015
