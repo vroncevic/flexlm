@@ -21,8 +21,7 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-  	For now no.
-	shutil modules are build blocks for bash applications.
+	sh-util	https://github.com/vroncevic/sh-util
 
 COPYRIGHT AND LICENCE
 
