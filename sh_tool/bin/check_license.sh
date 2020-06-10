@@ -1,28 +1,28 @@
 #!/bin/bash
 #
-# @brief   Stop license daemon
-# @version ver.1.0
+# @brief   Check license (status) on port
+# @version ver.1.0.0
 # @date    Mon Jun 01 18:36:32 2015
 # @company Frobas IT Department, www.frobas.com 2015
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
 #
 
-declare -A STOP_LICENSE_USAGE=(
-    [USAGE_TOOL]="__stop_license"
+declare -A CHECK_LICENSE_USAGE=(
+    [USAGE_TOOL]="__check_license"
     [USAGE_ARG1]="[PORT NUMBER] Port number for license"
-    [USAGE_EX_PRE]="# Stop license deamon with port number 5280"
-    [USAGE_EX]="__stop_license 5280"
+    [USAGE_EX_PRE]="# Check license on port 5280"
+    [USAGE_EX]="__check_license 5280"
 )
 
 #
-# @brief  Stop license daemon
-# @param  Value required port number
+# @brief  Check license (status) on port
+# @param  Valie required port number
 # @retval Success return 0, else 1
 #
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
-# __stop_license "$LP"
+# __check_license "5280"
 # local STATUS=$?
 #
 # if [ "$STATUS" -eq "$SUCCESS" ]; then
@@ -35,11 +35,11 @@ declare -A STOP_LICENSE_USAGE=(
 #    # exit 128
 # fi
 #
-function __stop_license {
+function __check_license {
     local LP=$1
     if [ -n "${LP}" ]; then
         local FUNC=${FUNCNAME[0]} MSG="None" STATUS
-        MSG="Stop license daemon on port [${LP}]"
+        MSG="Checking license on port [${LP}]"
         info_debug_message "$MSG" "$FUNC" "$FLEXLM_TOOL"
         local FHOME=${config_flexlm_util[FLEX_HOME]}
         local FVERSION=${config_flexlm_util[FLEX_VERSION]}
@@ -50,7 +50,7 @@ function __stop_license {
         STATUS=$?
         if [ $STATUS -eq $SUCCESS ]; then
             local LA="${LP}@${FHOST}"
-            eval "${LMUTIL} lmdown -c ${LA}"
+            eval "${LMUTIL} lmstat -a -c ${LA}"
             info_debug_message_end "Done" "$FUNC" "$FLEXLM_TOOL"
             return $SUCCESS
         fi
@@ -58,7 +58,7 @@ function __stop_license {
         info_debug_message_end "$MSG" "$FUNC" "$FLEXLM_TOOL"
         return $NOT_SUCCESS
     fi
-    usage STOP_LICENSE_USAGE
+    usage CHECK_LICENSE_USAGE
     return $NOT_SUCCESS
 }
 
