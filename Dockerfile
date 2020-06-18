@@ -1,4 +1,4 @@
-# Copyright 2018 Vladimir Roncevic <elektron.ronca@gmail.com>
+# Copyright 2015 Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
