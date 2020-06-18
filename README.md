@@ -1,8 +1,8 @@
 # Shell script for license management.
 
-***flexlm*** is shell tool for operating Flex License Manager.
+**flexlm** is shell tool for operating Flex License Manager.
 
-Developed in bash code: ***100%***.
+Developed in [bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) code: **100%**.
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
@@ -14,19 +14,19 @@ other information that should be provided before the modules are installed.
 <!-- START doctoc -->
 **Table of Contents**
 
-- [Installation](https://github.com/vroncevic/flexlm#installation)
-- [Usage](https://github.com/vroncevic/flexlm#usage)
-- [Dependencies](https://github.com/vroncevic/flexlm#dependencies)
-- [Shell tool structure](https://github.com/vroncevic/flexlm#shell-tool-structure)
-- [Docs](https://github.com/vroncevic/flexlm#docs)
-- [Copyright and Licence](https://github.com/vroncevic/flexlm#copyright-and-licence)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [Shell tool structure](#shell-tool-structure)
+- [Docs](#docs)
+- [Copyright and Licence](#copyright-and-licence)
 <!-- END doctoc -->
 
 ### INSTALLATION
 
 Navigate to release [page](https://github.com/vroncevic/flexlm/releases) download and extract release archive.
 
-To install modules type the following:
+To install **flexlm** type the following:
 
 ```
 tar xvzf flexlm-x.y.z.tar.gz
@@ -55,15 +55,14 @@ flexlm start cadence
 
 ### DEPENDENCIES
 
-This module requires these other modules and libraries:
-
-* sh_util https://github.com/vroncevic/sh_util
+**flexlm** requires next modules and libraries:
+* sh_util [https://github.com/vroncevic/sh_util](https://github.com/vroncevic/sh_util)
 
 ### SHELL TOOL STRUCTURE
 
-***flexlm*** is based on MOP.
+**flexlm** is based on MOP.
 
-Shell tool structure:
+Code structure:
 ```
 .
 ├── bin/
@@ -85,15 +84,16 @@ Shell tool structure:
 [![Documentation Status](https://readthedocs.org/projects/flexlm/badge/?version=latest)](https://flexlm.readthedocs.io/projects/flexlm/en/latest/?badge=latest)
 
 More documentation and info at:
-
-* https://flexlm.readthedocs.io/en/latest/
+* [https://apmodule.readthedocs.io/en/latest/](https://apmodule.readthedocs.io/en/latest/)
+* [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
+* [http://csweb.cs.wfu.edu/flexlm_programming_guide](http://csweb.cs.wfu.edu/~torgerse/Kokua/Irix_6.5.21_doc_cd/usr/share/Insight/library/SGI_bookshelves/SGI_Developer/books/FLEXlm_PG/sgi_html/index.html)
 
 ### COPYRIGHT AND LICENCE
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 
-Copyright (C) 2018 by https://vroncevic.github.io/flexlm
+Copyright (C) 2015 by [vroncevic.github.io/flexlm](https://vroncevic.github.io/flexlm)
 
 This tool is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
