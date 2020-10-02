@@ -1,15 +1,18 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>FLEXLM &mdash; flexlm  documentation</title>
+  <title>flexlm &mdash; flexlm  documentation</title>
   
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
 
   
   
@@ -17,7 +20,9 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -29,10 +34,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -48,7 +49,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> flexlm
+            <a href="#" class="icon icon-home" alt="Documentation Home"> flexlm
           
 
           
@@ -71,6 +72,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -79,12 +81,13 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">FLEXLM</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">flexlm</a></li>
 </ul>
 
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -123,9 +126,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>FLEXLM</li>
+      <li>flexlm</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,18 +148,19 @@
            <div itemprop="articleBody">
             
   <div class="section" id="flexlm">
-<h1>FLEXLM<a class="headerlink" href="#flexlm" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-</div>
+<h1>flexlm<a class="headerlink" href="#flexlm" title="Permalink to this headline">¶</a></h1>
 <p><strong>flexlm</strong> is shell tool for operating Flex License Manager.</p>
 <p>Developed in <a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash</a> code: <strong>100%</strong>.</p>
+<p><a class="reference external" href="https://github.com/vroncevic/flexlm/actions?query=workflow%3A%22flexlm+shell+checker%22"><img alt="GitHub shell checker" src="https://github.com/vroncevic/flexlm/workflows/flexlm%20shell%20checker/badge.svg" /></a></p>
 <p>The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.</p>
 <p><a class="reference external" href="https://github.com/vroncevic/flexlm/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/vroncevic/flexlm.svg" /></a> <a class="reference external" href="https://flexlm.readthedocs.io/projects/flexlm/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/flexlm/badge/?version=latest" /></a> <a class="reference external" href="https://github.com/vroncevic/flexlm/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/vroncevic/flexlm.svg" /></a></p>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 <div class="section" id="installation">
-<h1>INSTALLATION<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p>Navigate to release <a class="reference external" href="https://github.com/vroncevic/flexlm/releases">page</a> download and extract release archive.</p>
 <p>To install <strong>flexlm</strong> type the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf flexlm-x.y.z.tar.gz
@@ -166,16 +170,18 @@ cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.1.0/
 cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.1.0/
 </pre></div>
 </div>
+<p>Or You can use Docker to create image/container.</p>
+<p><a class="reference external" href="https://github.com/vroncevic/flexlm/actions?query=workflow%3A%22flexlm+docker+checker%22"><img alt="GitHub docker checker" src="https://github.com/vroncevic/flexlm/workflows/flexlm%20docker%20checker/badge.svg" /></a></p>
 </div>
 <div class="section" id="dependencies">
-<h1>DEPENDENCIES<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
+<h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
 <dl class="docutils">
 <dt><strong>flexlm</strong> requires next modules and libraries:</dt>
 <dd>sh_util <a class="reference external" href="https://github.com/vroncevic/sh_util">https://github.com/vroncevic/sh_util</a></dd>
 </dl>
 </div>
 <div class="section" id="shell-tool-structure">
-<h1>SHELL TOOL STRUCTURE<a class="headerlink" href="#shell-tool-structure" title="Permalink to this headline">¶</a></h1>
+<h1>Shell tool structure<a class="headerlink" href="#shell-tool-structure" title="Permalink to this headline">¶</a></h1>
 <p><strong>flexlm</strong> is based on MOP.</p>
 <p>Code structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
@@ -195,10 +201,10 @@ cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.1.0/
 </div>
 </div>
 <div class="section" id="copyright-and-licence">
-<h1>COPYRIGHT AND LICENCE<a class="headerlink" href="#copyright-and-licence" title="Permalink to this headline">¶</a></h1>
+<h1>Copyright and licence<a class="headerlink" href="#copyright-and-licence" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0"><img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="License: Apache 2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p>
 <p>Copyright (C) 2015 by <a class="reference external" href="https://vroncevic.github.io/flexlm">vroncevic.github.io/flexlm</a></p>
-<p>This tool is free software; you can redistribute it and/or modify it
+<p><strong>flexlm</strong> is free software; you can redistribute it and/or modify it
 under the same terms as Bash itself, either Bash version 4.2.47 or,
 at your option, any later version of Bash 4 you may have available.</p>
 </div>
@@ -214,11 +220,19 @@ at your option, any later version of Bash 4 you may have available.</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -229,7 +243,6 @@ at your option, any later version of Bash 4 you may have available.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

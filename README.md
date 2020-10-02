@@ -4,6 +4,8 @@
 
 Developed in **[bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))** code: **100%**.
 
+[![flexlm shell checker](https://github.com/vroncevic/flexlm/workflows/flexlm%20shell%20checker/badge.svg)](https://github.com/vroncevic/flexlm/actions?query=workflow%3A%22flexlm+shell+checker%22)
+
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
@@ -40,6 +42,8 @@ cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.1.0/
 ![alt tag](https://raw.githubusercontent.com/vroncevic/flexlm/dev/docs/setup_tree.png)
 
 Or You can use docker to create image/container.
+
+[![flexlm docker checker](https://github.com/vroncevic/flexlm/workflows/flexlm%20docker%20checker/badge.svg)](https://github.com/vroncevic/flexlm/actions?query=workflow%3A%22flexlm+docker+checker%22)
 
 ### Usage
 
