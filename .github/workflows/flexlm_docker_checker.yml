@@ -1,0 +1,22 @@
+name: flexlm docker checker
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Docker image
+      id: docker_checker
+      run: |
+        echo Building Docker image
+        build_transcript=$(docker build . --file Dockerfile --tag flexlm:latest)
+        [[ "$build_transcript" == *"Successfully"* ]] && echo ::set-output name=status::success || echo ::set-output name=status::failure
+    - name: Check on failures
+      if: steps.docker_checker.outputs.status == 'failure'
+      run: exit 1
