@@ -7,11 +7,11 @@
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
 #
 
-declare -A CHECK_LICENSE_USAGE=(
-    [USAGE_TOOL]="__check_license"
-    [USAGE_ARG1]="[PORT NUMBER] Port number for license"
-    [USAGE_EX_PRE]="# Check license on port 5280"
-    [USAGE_EX]="__check_license 5280"
+declare -A CHECK_LICENSE_Usage=(
+    [Usage_TOOL]="__check_license"
+    [Usage_ARG1]="[PORT NUMBER] Port number for license"
+    [Usage_EX_PRE]="# Check license on port 5280"
+    [Usage_EX]="__check_license 5280"
 )
 
 #
@@ -58,7 +58,7 @@ function __check_license {
         info_debug_message_end "$MSG" "$FUNC" "$FLEXLM_TOOL"
         return $NOT_SUCCESS
     fi
-    usage CHECK_LICENSE_USAGE
+    usage CHECK_LICENSE_Usage
     return $NOT_SUCCESS
 }
 

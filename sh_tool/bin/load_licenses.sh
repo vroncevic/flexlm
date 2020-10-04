@@ -7,11 +7,11 @@
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
 #
 
-declare -A LOAD_LICENSES_USAGE=(
-    [USAGE_TOOL]="__load_licenses"
-    [USAGE_ARG1]="[CONFIG FILE] Configuration file woth licenses"
-    [USAGE_EX_PRE]="# Load license"
-    [USAGE_EX]="__load_licenses \$CFG"
+declare -A LOAD_LICENSES_Usage=(
+    [Usage_TOOL]="__load_licenses"
+    [Usage_ARG1]="[CONFIG FILE] Configuration file woth licenses"
+    [Usage_EX_PRE]="# Load license"
+    [Usage_EX]="__load_licenses \$CFG"
 )
 
 #
@@ -51,7 +51,7 @@ function __load_licenses() {
         info_debug_message_end "$MSG" "$FUNC" "$FLEXLM_TOOL"
         return $NOT_SUCCESS
     fi
-    usage LOAD_LICENSES_USAGE
+    usage LOAD_LICENSES_Usage
     return $NOT_SUCCESS
 }
 

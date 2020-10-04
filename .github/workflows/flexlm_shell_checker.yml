@@ -24,8 +24,12 @@ jobs:
         id: size_checker
         run: |
           echo Checking size
-          code_line_number=$(wc -l < sh_tool/bin/flexlm.sh)
-          [[ $code_line_number -gt 300 ]] && echo ::set-output name=status::failure || echo ::set-output name=status::success
+          code_line_number_1=$(wc -l < sh_tool/bin/flexlm.sh)
+          code_line_number_2=$(wc -l < sh_tool/bin/check_license.sh)
+          code_line_number_3=$(wc -l < sh_tool/bin/load_licenses.sh)
+          code_line_number_4=$(wc -l < sh_tool/bin/start_license.sh)
+          code_line_number_5=$(wc -l < sh_tool/bin/stop_license.sh)
+          [[ $code_line_number_1 -gt 300 || $code_line_number_2 -gt 300 || $code_line_number_3 -gt 300 || $code_line_number_4 -gt 300 || $code_line_number_5 -gt 300 ]] && echo ::set-output name=status::failure || echo ::set-output name=status::success
       - name: Check on failures
         if: steps.syntax_checker.outputs.status == 'failure' || steps.size_checker.outputs.status == 'failure'
         run: exit 1

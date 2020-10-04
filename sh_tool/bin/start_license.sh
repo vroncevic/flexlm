@@ -7,12 +7,12 @@
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
 #
 
-declare -A START_LICENSE_USAGE=(
-    [USAGE_TOOL]="__start_license"
-    [USAGE_ARG1]="[LICENSE FILE] License file path"
-    [USAGE_ARG2]="[LOGGING FILE] Log file path"
-    [USAGE_EX_PRE]="# Start license deamon"
-    [USAGE_EX]="__start_license \$LICENSE_FILE \$LOGGING_FILE"
+declare -A START_LICENSE_Usage=(
+    [Usage_TOOL]="__start_license"
+    [Usage_ARG1]="[LICENSE FILE] License file path"
+    [Usage_ARG2]="[LOGGING FILE] Log file path"
+    [Usage_EX_PRE]="# Start license deamon"
+    [Usage_EX]="__start_license \$LICENSE_FILE \$LOGGING_FILE"
 )
 #
 # @brief  Start license daemon
@@ -63,7 +63,7 @@ function __start_license {
         info_debug_message_end "$MSG" "$FUNC" "$FLEXLM_TOOL"
         return $NOT_SUCCESS
     fi
-    usage START_LICENSE_USAGE
+    usage START_LICENSE_Usage
     return $NOT_SUCCESS
 }
 

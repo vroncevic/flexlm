@@ -7,11 +7,11 @@
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
 #
 
-declare -A STOP_LICENSE_USAGE=(
-    [USAGE_TOOL]="__stop_license"
-    [USAGE_ARG1]="[PORT NUMBER] Port number for license"
-    [USAGE_EX_PRE]="# Stop license deamon with port number 5280"
-    [USAGE_EX]="__stop_license 5280"
+declare -A STOP_LICENSE_Usage=(
+    [Usage_TOOL]="__stop_license"
+    [Usage_ARG1]="[PORT NUMBER] Port number for license"
+    [Usage_EX_PRE]="# Stop license deamon with port number 5280"
+    [Usage_EX]="__stop_license 5280"
 )
 
 #
@@ -58,7 +58,7 @@ function __stop_license {
         info_debug_message_end "$MSG" "$FUNC" "$FLEXLM_TOOL"
         return $NOT_SUCCESS
     fi
-    usage STOP_LICENSE_USAGE
+    usage STOP_LICENSE_Usage
     return $NOT_SUCCESS
 }
 
