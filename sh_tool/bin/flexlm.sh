@@ -34,7 +34,7 @@ FLEXLM_LOG=${FLEXLM_HOME}/log
 .    ${FLEXLM_HOME}/bin/start_license.sh
 .    ${FLEXLM_HOME}/bin/stop_license.sh
 
-declare -A FLEXLM_Usage=(
+declare -A FLEXLM_USAGE=(
     [Usage_TOOL]="${FLEXLM_TOOL}"
     [Usage_ARG1]="[COMMAND] start | stop | restart | status"
     [Usage_ARG2]="[VENDOR NAME] cadence | mentor"
@@ -118,7 +118,7 @@ function __flexlm {
                 LPORT="LIC_PORT_${SUFIX}"
                 LLOG="LIC_LOG_${SUFIX}"
             else
-                usage FLEXLM_Usage
+                usage FLEXLM_USAGE
                 exit 131
             fi
             local LIC_FILE=$(get_item "$LFILE" license_list)
@@ -147,14 +147,14 @@ function __flexlm {
                 esac
                 exit 0
             fi
-            usage FLEXLM_Usage
+            usage FLEXLM_USAGE
             exit 132
         fi
         MSG="Force exit!"
         info_debug_message_end "$MSG" "$FUNC" "$FLEXLM_TOOL"
         exit 130
     fi
-    usage FLEXLM_Usage
+    usage FLEXLM_USAGE
     exit 128
 }
 
