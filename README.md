@@ -1,3 +1,5 @@
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/flexlm/dev/docs/flexlm_logo.png" width="25%">
+
 # Shell script for license management
 
 **flexlm** is shell tool for operating **[Flex License Manager](https://www.openlm.com/what-is-flexlm-what-is-flexnet-2/)**.
@@ -32,11 +34,11 @@ Navigate to release **[page](https://github.com/vroncevic/flexlm/releases)** dow
 To install **flexlm** type the following:
 
 ```
-tar xvzf flexlm-x.y.z.tar.gz
-cd flexlm-x.y.z
-cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.1.0/
-cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.1.0/
-cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.1.0/
+tar xvzf flexlm-x.y.tar.gz
+cd flexlm-x.y
+cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.x.y/
+cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.x.y/
+cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.x.y/
 ```
 
 ![alt tag](https://raw.githubusercontent.com/vroncevic/flexlm/dev/docs/setup_tree.png)
@@ -49,7 +51,7 @@ Or You can use docker to create image/container.
 
 ```
 # Create symlink for shell tool
-ln -s /root/scripts/flexlm/ver.1.0/bin/flexlm.sh /root/bin/flexlm
+ln -s /root/scripts/flexlm/ver.x.y/bin/flexlm.sh /root/bin/flexlm
 
 # Setting PATH
 export PATH=${PATH}:/root/bin/
@@ -69,7 +71,7 @@ flexlm start cadence
 
 Code structure:
 ```
-.
+sh_tool/
 ├── bin/
 │   ├── check_license.sh
 │   ├── flexlm.sh
@@ -97,7 +99,7 @@ More documentation and info at:
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2015 by [vroncevic.github.io/flexlm](https://vroncevic.github.io/flexlm)
+Copyright (C) 2016 by [vroncevic.github.io/flexlm](https://vroncevic.github.io/flexlm)
 
 **flexlm** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,

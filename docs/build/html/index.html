@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>flexlm &mdash; flexlm  documentation</title>
+  <title>flexlm &mdash; flexlm https://github.com/vroncevic/flexlm/releases documentation</title>
   
 
   
@@ -57,6 +57,10 @@
 
           
             
+            
+              <div class="version">
+                1.0
+              </div>
             
           
 
@@ -163,11 +167,11 @@ other information that should be provided before the tool is installed.</p>
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p>Navigate to release <a class="reference external" href="https://github.com/vroncevic/flexlm/releases">page</a> download and extract release archive.</p>
 <p>To install <strong>flexlm</strong> type the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf flexlm-x.y.z.tar.gz
-<span class="nb">cd</span> flexlm-x.y.z
-cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.1.0/
-cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.1.0/
-cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.1.0/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf flexlm-x.y.tar.gz
+<span class="nb">cd</span> flexlm-x.y
+cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.x.y/
+cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.x.y/
+cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.x.y/
 </pre></div>
 </div>
 <p>Or You can use Docker to create image/container.</p>
@@ -184,7 +188,7 @@ cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.1.0/
 <h1>Shell tool structure<a class="headerlink" href="#shell-tool-structure" title="Permalink to this headline">¶</a></h1>
 <p><strong>flexlm</strong> is based on MOP.</p>
 <p>Code structure:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh_tool/
 ├── bin/
 │   ├── check_license.sh
 │   ├── flexlm.sh
@@ -203,7 +207,7 @@ cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.1.0/
 <div class="section" id="copyright-and-licence">
 <h1>Copyright and licence<a class="headerlink" href="#copyright-and-licence" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0"><img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="License: Apache 2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p>
-<p>Copyright (C) 2015 by <a class="reference external" href="https://vroncevic.github.io/flexlm">vroncevic.github.io/flexlm</a></p>
+<p>Copyright (C) 2016 by <a class="reference external" href="https://vroncevic.github.io/flexlm">vroncevic.github.io/flexlm</a></p>
 <p><strong>flexlm</strong> is free software; you can redistribute it and/or modify it
 under the same terms as Bash itself, either Bash version 4.2.47 or,
 at your option, any later version of Bash 4 you may have available.</p>
