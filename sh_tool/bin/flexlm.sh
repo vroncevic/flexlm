@@ -63,7 +63,8 @@ TOOL_NOTIFY="false"
 # @brief   Main function 
 # @params  Values required operation and vendor type of license
 # @exitval Function __flexlm exit with integer value
-#             0   - success operation
+#            0   - tool finished with success operation
+#            127 - run tool script as root user from cli
 #            128 - missing argument(s) from cli
 #            129 - failed to load tool script configuration from files
 #            130 - failed to load configuration file with licenses
@@ -161,14 +162,7 @@ function __flexlm {
 #
 # @brief   Main entry point
 # @params  required values operation and vendor type of license
-# @exitval Script tool flexlm exit with integer value
-#            0   - tool finished with success operation
-#            127 - run tool script as root user from cli
-#            128 - missing argument(s) from cli
-#            129 - failed to load tool script configuration from files
-#            130 - failed to load configuration file with licenses
-#            131 - wrong vendor argument
-#            132 - wrong operation argument
+# @exitval Script tool flexlm exit with integer value 0 - 132
 #
 printf "\n%s\n%s\n\n" "${FLEXLM_TOOL} ${FLEXLM_VERSION}" "`date`"
 check_root
