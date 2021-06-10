@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Licenses Server Manager (wrapper)
-# @version ver.1.0.0
+# @version ver.1.0
 # @date    Mon Jun 01 18:36:32 2015
 # @company Frobas IT Department, www.frobas.com 2015
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
@@ -64,7 +64,6 @@ TOOL_NOTIFY="false"
 # @params  Values required operation and vendor type of license
 # @exitval Function __flexlm exit with integer value
 #            0   - tool finished with success operation
-#            127 - run tool script as root user from cli
 #            128 - missing argument(s) from cli
 #            129 - failed to load tool script configuration from files
 #            130 - failed to load configuration file with licenses
@@ -162,7 +161,14 @@ function __flexlm {
 #
 # @brief   Main entry point
 # @params  required values operation and vendor type of license
-# @exitval Script tool flexlm exit with integer value 0 - 132
+# @exitval Script tool flexlm exit with integer value
+#            0   - tool finished with success operation
+#            127 - run tool script as root user from cli
+#            128 - missing argument(s) from cli
+#            129 - failed to load tool script configuration from files
+#            130 - failed to load configuration file with licenses
+#            131 - wrong vendor argument
+#            132 - wrong operation argument
 #
 printf "\n%s\n%s\n\n" "${FLEXLM_TOOL} ${FLEXLM_VERSION}" "`date`"
 check_root
