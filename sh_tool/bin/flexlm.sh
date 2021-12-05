@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# @brief   Licenses Server Manager (wrapper)
-# @version ver.1.0
-# @date    Mon Jun 01 18:36:32 2015
-# @company Frobas IT Department, www.frobas.com 2015
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @brief   FlexLM Manager
+# @version ver.2.0
+# @date    Sun Nov 21 11:40:40 CET 2021
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 UTIL_ROOT=/root/scripts
 UTIL_VERSION=ver.1.0
@@ -23,23 +23,29 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/progress_bar.sh
 
 FLEXLM_TOOL=flexlm
-FLEXLM_VERSION=ver.1.0
+FLEXLM_VERSION=ver.2.0
 FLEXLM_HOME=${UTIL_ROOT}/${FLEXLM_TOOL}/${FLEXLM_VERSION}
 FLEXLM_CFG=${FLEXLM_HOME}/conf/${FLEXLM_TOOL}.cfg
 FLEXLM_UTIL_CFG=${FLEXLM_HOME}/conf/${FLEXLM_TOOL}_util.cfg
+FLEXLM_LOGO=${FLEXLM_HOME}/conf/${FLEXLM_TOOL}.logo
 FLEXLM_LOG=${FLEXLM_HOME}/log
 
+tabs 4
+CONSOLE_WIDTH=$(stty size | awk '{print $2}')
+
+.    ${FLEXLM_HOME}/bin/center.sh
+.    ${FLEXLM_HOME}/bin/display_logo.sh
 .    ${FLEXLM_HOME}/bin/check_license.sh
 .    ${FLEXLM_HOME}/bin/load_licenses.sh
 .    ${FLEXLM_HOME}/bin/start_license.sh
 .    ${FLEXLM_HOME}/bin/stop_license.sh
 
 declare -A FLEXLM_USAGE=(
-    [Usage_TOOL]="${FLEXLM_TOOL}"
-    [Usage_ARG1]="[COMMAND] start | stop | restart | status"
-    [Usage_ARG2]="[VENDOR NAME] cadence | mentor"
-    [Usage_EX_PRE]="# Start license server"
-    [Usage_EX]="${FLEXLM_TOOL} start mentor"
+    [USAGE_TOOL]="${FLEXLM_TOOL}"
+    [USAGE_ARG1]="[COMMAND] start | stop | restart | status"
+    [USAGE_ARG2]="[VENDOR NAME] cadence | mentor"
+    [USAGE_EX_PRE]="# Start license server"
+    [USAGE_EX]="${FLEXLM_TOOL} start mentor"
 )
 
 declare -A FLEXLM_LOGGING=(
@@ -77,6 +83,7 @@ TOOL_NOTIFY="false"
 #
 function __flexlm {
     local OP=$1 VLIC=$2
+    display_logo
     if [[ -n "${OP}" && -n "${VLIC}" ]]; then
         local FUNC=${FUNCNAME[0]} MSG="None"
         local STATUS_CONF STATUS_CONF_UTIL STATUS
@@ -178,4 +185,3 @@ if [ $STATUS -eq $SUCCESS ]; then
 fi
 
 exit 127
-

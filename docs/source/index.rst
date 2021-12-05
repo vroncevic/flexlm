@@ -33,11 +33,16 @@ other information that should be provided before the tool is installed.
 Installation
 -------------
 
+|Debian Linux OS|
+
+.. |Debian Linux OS| image:: https://raw.githubusercontent.com/vroncevic/flexlm/dev/docs/debtux.png
+   :target: https://www.debian.org
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/flexlm/releases
 
-To install **flexlm** type the following:
+To install **flexlm** type the following
 
 .. code-block:: bash
 
@@ -57,7 +62,7 @@ Or You can use Docker to create image/container.
 Dependencies
 -------------
 
-**flexlm** requires next modules and libraries:
+**flexlm** requires next modules and libraries
     sh_util `https://github.com/vroncevic/sh_util <https://github.com/vroncevic/sh_util>`_
 
 Shell tool structure
@@ -65,23 +70,26 @@ Shell tool structure
 
 **flexlm** is based on MOP.
 
-Code structure:
+Shell tool structure
 
 .. code-block:: bash
 
-  sh_tool/
-  ├── bin/
-  │   ├── check_license.sh
-  │   ├── flexlm.sh
-  │   ├── load_licenses.sh
-  │   ├── start_license.sh
-  │   └── stop_license.sh
-  ├── conf/
-  │   ├── flexlm.cfg
-  │   ├── flexlm_util.cfg
-  │   └── licenses.cfg
-  └── log/
-      └── flexlm.log
+   sh_tool/
+   ├── bin/
+   │   ├── center.sh
+   │   ├── check_license.sh
+   │   ├── display_logo.sh
+   │   ├── flexlm.sh
+   │   ├── load_licenses.sh
+   │   ├── start_license.sh
+   │   └── stop_license.sh
+   ├── conf/
+   │   ├── flexlm.cfg
+   │   ├── flexlm.logo
+   │   ├── flexlm_util.cfg
+   │   └── licenses.cfg
+   └── log/
+       └── flexlm.log
 
 Copyright and licence
 ----------------------

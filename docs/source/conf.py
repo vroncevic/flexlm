@@ -3,7 +3,7 @@
 project = u'flexlm'
 copyright = u'2020, Vladimir Roncevic <elektron.ronca@gmail.com>'
 author = u'Vladimir Roncevic <elektron.ronca@gmail.com>'
-version = u'1.0'
+version = u'2.0'
 release = u'https://github.com/vroncevic/flexlm/releases'
 extensions = []
 templates_path = ['_templates']

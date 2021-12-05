@@ -1,17 +1,17 @@
 #!/bin/bash
 #
-# @brief   Load licenses parameters from configuration file
-# @version ver.1.0
-# @date    Mon Jun 01 18:36:32 2015
-# @company Frobas IT Department, www.frobas.com 2015
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @brief   FlexLM Manager
+# @version ver.2.0
+# @date    Sun Nov 21 11:40:40 CET 2021
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
-declare -A LOAD_LICENSES_Usage=(
-    [Usage_TOOL]="__load_licenses"
-    [Usage_ARG1]="[CONFIG FILE] Configuration file woth licenses"
-    [Usage_EX_PRE]="# Load license"
-    [Usage_EX]="__load_licenses \$CFG"
+declare -A LOAD_LICENSES_USAGE=(
+    [USAGE_TOOL]="__load_licenses"
+    [USAGE_ARG1]="[CONFIG FILE] Configuration file woth licenses"
+    [USAGE_EX_PRE]="# Load license"
+    [USAGE_EX]="__load_licenses \$CFG"
 )
 
 #
@@ -35,7 +35,7 @@ declare -A LOAD_LICENSES_Usage=(
 #    # exit 128
 # fi
 #
-function __load_licenses() {
+function __load_licenses {
     local CF=$1
     if [ -n "${CF}" ]; then
         local FUNC=${FUNCNAME[0]} MSG="None" STATUS
@@ -51,7 +51,7 @@ function __load_licenses() {
         info_debug_message_end "$MSG" "$FUNC" "$FLEXLM_TOOL"
         return $NOT_SUCCESS
     fi
-    usage LOAD_LICENSES_Usage
+    usage LOAD_LICENSES_USAGE
     return $NOT_SUCCESS
 }
 
