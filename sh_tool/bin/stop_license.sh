@@ -1,17 +1,17 @@
 #!/bin/bash
 #
-# @brief   Stop license daemon
-# @version ver.1.0
-# @date    Mon Jun 01 18:36:32 2015
-# @company Frobas IT Department, www.frobas.com 2015
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @brief   FlexLM Manager
+# @version ver.2.0
+# @date    Sun Nov 21 11:40:40 CET 2021
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
-declare -A STOP_LICENSE_Usage=(
-    [Usage_TOOL]="__stop_license"
-    [Usage_ARG1]="[PORT NUMBER] Port number for license"
-    [Usage_EX_PRE]="# Stop license deamon with port number 5280"
-    [Usage_EX]="__stop_license 5280"
+declare -A STOP_LICENSE_USAGE=(
+    [USAGE_TOOL]="__stop_license"
+    [USAGE_ARG1]="[PORT NUMBER] Port number for license"
+    [USAGE_EX_PRE]="# Stop license deamon with port number 5280"
+    [USAGE_EX]="__stop_license 5280"
 )
 
 #
@@ -58,7 +58,7 @@ function __stop_license {
         info_debug_message_end "$MSG" "$FUNC" "$FLEXLM_TOOL"
         return $NOT_SUCCESS
     fi
-    usage STOP_LICENSE_Usage
+    usage STOP_LICENSE_USAGE
     return $NOT_SUCCESS
 }
 

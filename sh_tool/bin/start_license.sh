@@ -1,18 +1,18 @@
 #!/bin/bash
 #
-# @brief   Start license daemon
-# @version ver.1.0
-# @date    Mon Jun 01 18:36:32 2015
-# @company Frobas IT Department, www.frobas.com 2015
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @brief   FlexLM Manager
+# @version ver.2.0
+# @date    Sun Nov 21 11:40:40 CET 2021
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
-declare -A START_LICENSE_Usage=(
-    [Usage_TOOL]="__start_license"
-    [Usage_ARG1]="[LICENSE FILE] License file path"
-    [Usage_ARG2]="[LOGGING FILE] Log file path"
-    [Usage_EX_PRE]="# Start license deamon"
-    [Usage_EX]="__start_license \$LICENSE_FILE \$LOGGING_FILE"
+declare -A START_LICENSE_USAGE=(
+    [USAGE_TOOL]="__start_license"
+    [USAGE_ARG1]="[LICENSE FILE] License file path"
+    [USAGE_ARG2]="[LOGGING FILE] Log file path"
+    [USAGE_EX_PRE]="# Start license deamon"
+    [USAGE_EX]="__start_license \$LICENSE_FILE \$LOGGING_FILE"
 )
 #
 # @brief  Start license daemon
@@ -63,7 +63,7 @@ function __start_license {
         info_debug_message_end "$MSG" "$FUNC" "$FLEXLM_TOOL"
         return $NOT_SUCCESS
     fi
-    usage START_LICENSE_Usage
+    usage START_LICENSE_USAGE
     return $NOT_SUCCESS
 }
 

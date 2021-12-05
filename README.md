@@ -29,10 +29,11 @@ other information that should be provided before the modules are installed.
 
 ### Installation
 
+![Debian Linux OS](https://raw.githubusercontent.com/vroncevic/flexlm/dev/docs/debtux.png)
+
 Navigate to release **[page](https://github.com/vroncevic/flexlm/releases)** download and extract release archive.
 
-To install **flexlm** type the following:
-
+To install **flexlm** type the following
 ```
 tar xvzf flexlm-x.y.tar.gz
 cd flexlm-x.y
@@ -41,7 +42,38 @@ cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.x.y/
 cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.x.y/
 ```
 
-![alt tag](https://raw.githubusercontent.com/vroncevic/flexlm/dev/docs/setup_tree.png)
+Self generated setup script and execution
+```
+./flexlm_setup.sh 
+
+[setup] installing App/Tool/Script flexlm
+	Sun 05 Dec 2021 01:15:58 PM CET
+[setup] copy App/Tool/Script structure
+[setup] remove github editor configuration files
+[setup] set App/Tool/Script permission
+[setup] create symbolic link of App/Tool/Script
+[setup] done
+
+/root/scripts/flexlm/ver.2.0/
+├── bin/
+│   ├── center.sh
+│   ├── check_license.sh
+│   ├── display_logo.sh
+│   ├── flexlm.sh
+│   ├── load_licenses.sh
+│   ├── start_license.sh
+│   └── stop_license.sh
+├── conf/
+│   ├── flexlm.cfg
+│   ├── flexlm.logo
+│   ├── flexlm_util.cfg
+│   └── licenses.cfg
+└── log/
+    └── flexlm.log
+
+3 directories, 12 files
+lrwxrwxrwx 1 root root 42 Dec  5 13:15 /root/bin/flexlm -> /root/scripts/flexlm/ver.2.0/bin/flexlm.sh
+```
 
 Or You can use docker to create image/container.
 
@@ -57,29 +89,57 @@ ln -s /root/scripts/flexlm/ver.x.y/bin/flexlm.sh /root/bin/flexlm
 export PATH=${PATH}:/root/bin/
 
 # Start Cadence License Server
-flexlm start cadence
+flexlm 
+
+flexlm ver.2.0
+Sun 05 Dec 2021 01:16:52 PM CET
+
+[check_root] Check permission for current session? [ok]
+[check_root] Done
+
+	                             
+	  __ _           _           
+	 / _| | _____  _| |_ __ ___  
+	| |_| |/ _ \ \/ / | '_ ` _ \ 
+	|  _| |  __/>  <| | | | | | |
+	|_| |_|\___/_/\_\_|_| |_| |_|
+	                             
+	Info   github.io/flexlm ver.2.0
+	Issue  github.io/issue
+	Author vroncevic.github.io
+
+  [USAGE] flexlm [OPTIONS]
+  [OPTIONS]
+  [COMMAND] start | stop | restart | status
+  [VENDOR NAME] cadence | mentor
+  # Start license server
+  flexlm start mentor
+  [help | h] print this option
 ```
 
 ### Dependencies
 
-**flexlm** requires next modules and libraries:
+**flexlm** requires next modules and libraries
 * sh_util [https://github.com/vroncevic/sh_util](https://github.com/vroncevic/sh_util)
 
 ### Shell tool structure
 
 **flexlm** is based on MOP.
 
-Code structure:
+Shell tool structure
 ```
 sh_tool/
 ├── bin/
+│   ├── center.sh
 │   ├── check_license.sh
+│   ├── display_logo.sh
 │   ├── flexlm.sh
 │   ├── load_licenses.sh
 │   ├── start_license.sh
 │   └── stop_license.sh
 ├── conf/
 │   ├── flexlm.cfg
+│   ├── flexlm.logo
 │   ├── flexlm_util.cfg
 │   └── licenses.cfg
 └── log/
@@ -90,7 +150,7 @@ sh_tool/
 
 [![Documentation Status](https://readthedocs.org/projects/flexlm/badge/?version=latest)](https://flexlm.readthedocs.io/projects/flexlm/en/latest/?badge=latest)
 
-More documentation and info at:
+More documentation and info at
 * [https://apmodule.readthedocs.io/en/latest/](https://apmodule.readthedocs.io/en/latest/)
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
 * [http://csweb.cs.wfu.edu/flexlm_programming_guide](http://csweb.cs.wfu.edu/~torgerse/Kokua/Irix_6.5.21_doc_cd/usr/share/Insight/library/SGI_bookshelves/SGI_Developer/books/FLEXlm_PG/sgi_html/index.html)
