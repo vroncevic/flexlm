@@ -6,7 +6,7 @@
 
 Developed in **[bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))** code: **100%**.
 
-[![flexlm shell checker](https://github.com/vroncevic/flexlm/workflows/flexlm%20shell%20checker/badge.svg)](https://github.com/vroncevic/flexlm/actions?query=workflow%3A%22flexlm+shell+checker%22)
+[![flexlm_shell_checker](https://github.com/vroncevic/flexlm/actions/workflows/flexlm_shell_checker.yml/badge.svg)](https://github.com/vroncevic/flexlm/actions/workflows/flexlm_shell_checker.yml)
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
@@ -77,8 +77,6 @@ lrwxrwxrwx 1 root root 42 Dec  5 13:15 /root/bin/flexlm -> /root/scripts/flexlm/
 
 Or You can use docker to create image/container.
 
-[![flexlm docker checker](https://github.com/vroncevic/flexlm/workflows/flexlm%20docker%20checker/badge.svg)](https://github.com/vroncevic/flexlm/actions?query=workflow%3A%22flexlm+docker+checker%22)
-
 ### Usage
 
 ```
@@ -97,12 +95,16 @@ Sun 05 Dec 2021 01:16:52 PM CET
 [check_root] Check permission for current session? [ok]
 [check_root] Done
 
-	                             
-	  __ _           _           
-	 / _| | _____  _| |_ __ ___  
-	| |_| |/ _ \ \/ / | '_ ` _ \ 
-	|  _| |  __/>  <| | | | | | |
-	|_| |_|\___/_/\_\_|_| |_| |_|
+                                               
+     ████  ██                  ██              
+    ░██░  ░██                 ░██              
+   ██████ ░██  █████  ██   ██ ░██ ██████████   
+  ░░░██░  ░██ ██░░░██░░██ ██  ░██░░██░░██░░██  
+    ░██   ░██░███████ ░░███   ░██ ░██ ░██ ░██  
+    ░██   ░██░██░░░░   ██░██  ░██ ░██ ░██ ░██  
+    ░██   ███░░██████ ██ ░░██ ███ ███ ░██ ░██  
+    ░░   ░░░  ░░░░░░ ░░   ░░ ░░░ ░░░  ░░  ░░   
+                                               
 	                             
 	Info   github.io/flexlm ver.2.0
 	Issue  github.io/issue
@@ -153,13 +155,13 @@ sh_tool/
 More documentation and info at
 * [https://apmodule.readthedocs.io/en/latest/](https://apmodule.readthedocs.io/en/latest/)
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
-* [http://csweb.cs.wfu.edu/flexlm_programming_guide](http://csweb.cs.wfu.edu/~torgerse/Kokua/Irix_6.5.21_doc_cd/usr/share/Insight/library/SGI_bookshelves/SGI_Developer/books/FLEXlm_PG/sgi_html/index.html)
+* [http://csweb.cs.wfu.edu/flexlm_programming_guide](http://csweb.cs.wfu.edu/~torgerse/Kokua/Irix_6.5.21_doc_cd/usr/share/Insight/library/SGI_bookshelves/SGI_Developer/books/FLEXlm_PG/sgi_html/index.html)[![flexlm_shell_checker](https://github.com/vroncevic/flexlm/actions/workflows/flexlm_shell_checker.yml/badge.svg)](https://github.com/vroncevic/flexlm/actions/workflows/flexlm_shell_checker.yml)
 
 ### Copyright and licence
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2016 by [vroncevic.github.io/flexlm](https://vroncevic.github.io/flexlm)
+Copyright (C) 2016 - 2024 by [vroncevic.github.io/flexlm](https://vroncevic.github.io/flexlm)
 
 **flexlm** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
