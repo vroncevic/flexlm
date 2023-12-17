@@ -155,7 +155,7 @@ sh_tool/
 More documentation and info at
 * [https://apmodule.readthedocs.io/en/latest/](https://apmodule.readthedocs.io/en/latest/)
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
-* [http://csweb.cs.wfu.edu/flexlm_programming_guide](http://csweb.cs.wfu.edu/~torgerse/Kokua/Irix_6.5.21_doc_cd/usr/share/Insight/library/SGI_bookshelves/SGI_Developer/books/FLEXlm_PG/sgi_html/index.html)[![flexlm_shell_checker](https://github.com/vroncevic/flexlm/actions/workflows/flexlm_shell_checker.yml/badge.svg)](https://github.com/vroncevic/flexlm/actions/workflows/flexlm_shell_checker.yml)
+* [http://csweb.cs.wfu.edu/flexlm_programming_guide](http://csweb.cs.wfu.edu/~torgerse/Kokua/Irix_6.5.21_doc_cd/usr/share/Insight/library/SGI_bookshelves/SGI_Developer/books/FLEXlm_PG/sgi_html/index.html)
 
 ### Copyright and licence
 
