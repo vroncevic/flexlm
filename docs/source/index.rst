@@ -7,8 +7,8 @@ Developed in `bash <https://en.wikipedia.org/wiki/Bash_(Unix_shell)>`_ code: **1
 
 |GitHub shell checker|
 
-.. |GitHub shell checker| image:: https://github.com/vroncevic/flexlm/workflows/flexlm%20shell%20checker/badge.svg
-   :target: https://github.com/vroncevic/flexlm/actions?query=workflow%3A%22flexlm+shell+checker%22
+.. |GitHub shell checker| image:: https://github.com/vroncevic/flexlm/actions/workflows/flexlm_shell_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/flexlm/actions/workflows/flexlm_shell_checker.yml
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
@@ -54,11 +54,6 @@ To install **flexlm** type the following
 
 Or You can use Docker to create image/container.
 
-|GitHub docker checker|
-
-.. |GitHub docker checker| image:: https://github.com/vroncevic/flexlm/workflows/flexlm%20docker%20checker/badge.svg
-   :target: https://github.com/vroncevic/flexlm/actions?query=workflow%3A%22flexlm+docker+checker%22
-
 Dependencies
 -------------
 
@@ -102,7 +97,7 @@ Copyright and licence
 .. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
 
-Copyright (C) 2016 by `vroncevic.github.io/flexlm <https://vroncevic.github.io/flexlm>`_
+Copyright (C) 2016 - 2024 by `vroncevic.github.io/flexlm <https://vroncevic.github.io/flexlm>`_
 
 **flexlm** is free software; you can redistribute it and/or modify it
 under the same terms as Bash itself, either Bash version 4.2.47 or,

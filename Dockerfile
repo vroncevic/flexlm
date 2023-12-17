@@ -1,4 +1,4 @@
-# Copyright 2016 Vladimir Roncevic <elektron.ronca@gmail.com>
+# Copyright 2016 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
 # limitations under the License.
 #
 
-FROM debian:10
+FROM debian:12
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get install -yq --no-install-recommends \
@@ -24,8 +24,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
     ca-certificates \
     openssl
 
-RUN wget https://github.com/vroncevic/sh_util/archive/v1.0.zip
-RUN unzip v1.0.zip
+RUN wget https://github.com/vroncevic/sh_util/archive/1.0.zip
+RUN unzip 1.0.zip
 RUN find /sh_util-1.0/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
 RUN mkdir -p /root/scripts/sh_util/ver.1.0/
 RUN cp -R /sh_util-1.0/sh_tool/bin/   /root/scripts/sh_util/ver.1.0/
