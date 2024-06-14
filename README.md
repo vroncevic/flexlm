@@ -1,6 +1,6 @@
-<img align="right" src="https://raw.githubusercontent.com/vroncevic/flexlm/dev/docs/flexlm_logo.png" width="25%">
-
 # Shell script for license management
+
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/flexlm/dev/docs/flexlm_logo.png" width="25%">
 
 **flexlm** is shell tool for operating **[Flex License Manager](https://www.openlm.com/what-is-flexlm-what-is-flexnet-2/)**.
 
@@ -34,7 +34,8 @@ other information that should be provided before the modules are installed.
 Navigate to release **[page](https://github.com/vroncevic/flexlm/releases)** download and extract release archive.
 
 To install **flexlm** type the following
-```
+
+```bash
 tar xvzf flexlm-x.y.tar.gz
 cd flexlm-x.y
 cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.x.y/
@@ -43,7 +44,8 @@ cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.x.y/
 ```
 
 Self generated setup script and execution
-```
+
+```bash
 ./flexlm_setup.sh 
 
 [setup] installing App/Tool/Script flexlm
@@ -79,7 +81,7 @@ Or You can use docker to create image/container.
 
 ### Usage
 
-```
+```bash
 # Create symlink for shell tool
 ln -s /root/scripts/flexlm/ver.x.y/bin/flexlm.sh /root/bin/flexlm
 
@@ -129,7 +131,8 @@ Sun 05 Dec 2021 01:16:52 PM CET
 **flexlm** is based on MOP.
 
 Shell tool structure
-```
+
+```bash
 sh_tool/
 ├── bin/
 │   ├── center.sh
