@@ -36,45 +36,44 @@ Navigate to release **[page](https://github.com/vroncevic/flexlm/releases)** dow
 To install **flexlm** type the following
 
 ```bash
-tar xvzf flexlm-x.y.tar.gz
-cd flexlm-x.y
-cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.x.y/
-cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.x.y/
-cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.x.y/
+tar xvzf flexlm-3.0.tar.gz
+cd flexlm-3.0
+cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.3.0/
+cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.3.0/
+cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.3.0/
 ```
 
 Self generated setup script and execution
 
 ```bash
-./flexlm_setup.sh 
+./flexlm_setup.sh    
 
 [setup] installing App/Tool/Script flexlm
-	Sun 05 Dec 2021 01:15:58 PM CET
+	Wed Dec  3 07:35:54 PM CET 2025
+[setup] clean up App/Tool/Script structure
 [setup] copy App/Tool/Script structure
 [setup] remove github editor configuration files
 [setup] set App/Tool/Script permission
 [setup] create symbolic link of App/Tool/Script
 [setup] done
 
-/root/scripts/flexlm/ver.2.0/
-├── bin/
-│   ├── center.sh
+/root/scripts/flexlm/ver.3.0/
+├── bin
 │   ├── check_license.sh
-│   ├── display_logo.sh
 │   ├── flexlm.sh
 │   ├── load_licenses.sh
 │   ├── start_license.sh
 │   └── stop_license.sh
-├── conf/
+├── conf
 │   ├── flexlm.cfg
 │   ├── flexlm.logo
 │   ├── flexlm_util.cfg
 │   └── licenses.cfg
-└── log/
+└── log
     └── flexlm.log
 
-3 directories, 12 files
-lrwxrwxrwx 1 root root 42 Dec  5 13:15 /root/bin/flexlm -> /root/scripts/flexlm/ver.2.0/bin/flexlm.sh
+4 directories, 10 files
+lrwxrwxrwx 1 root root 42 Dec  3 19:35 /root/bin/flexlm -> /root/scripts/flexlm/ver.3.0/bin/flexlm.sh
 ```
 
 Or You can use docker to create image/container.
@@ -83,7 +82,7 @@ Or You can use docker to create image/container.
 
 ```bash
 # Create symlink for shell tool
-ln -s /root/scripts/flexlm/ver.x.y/bin/flexlm.sh /root/bin/flexlm
+ln -s /root/scripts/flexlm/ver.3.0/bin/flexlm.sh /root/bin/flexlm
 
 # Setting PATH
 export PATH=${PATH}:/root/bin/
@@ -91,8 +90,8 @@ export PATH=${PATH}:/root/bin/
 # Start Cadence License Server
 flexlm 
 
-flexlm ver.2.0
-Sun 05 Dec 2021 01:16:52 PM CET
+flexlm ver.3.0
+Wed Dec  3 07:36:18 PM CET 2025
 
 [check_root] Check permission for current session? [ok]
 [check_root] Done
@@ -108,7 +107,7 @@ Sun 05 Dec 2021 01:16:52 PM CET
     ░░   ░░░  ░░░░░░ ░░   ░░ ░░░ ░░░  ░░  ░░   
                                                
 	                             
-	Info   github.io/flexlm ver.2.0
+	Info   github.io/flexlm ver.3.0
 	Issue  github.io/issue
 	Author vroncevic.github.io
 
@@ -135,9 +134,7 @@ Shell tool structure
 ```bash
 sh_tool/
 ├── bin/
-│   ├── center.sh
 │   ├── check_license.sh
-│   ├── display_logo.sh
 │   ├── flexlm.sh
 │   ├── load_licenses.sh
 │   ├── start_license.sh
@@ -164,7 +161,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2016 - 2024 by [vroncevic.github.io/flexlm](https://vroncevic.github.io/flexlm)
+Copyright (C) 2016 - 2026 by [vroncevic.github.io/flexlm](https://vroncevic.github.io/flexlm)
 
 **flexlm** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,

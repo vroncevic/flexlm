@@ -1,4 +1,4 @@
-# Copyright 2016 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+# Copyright 2016 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,12 +35,12 @@ RUN rm -Rf v1.0.zip sh_util-1.0
 RUN mkdir /sh_tool/
 COPY sh_tool /sh_tool/
 RUN find /sh_tool/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
-RUN mkdir -p /root/scripts/flexlm/ver.2.0/
+RUN mkdir -p /root/scripts/flexlm/ver.3.0/
 RUN mkdir /root/bin/
-RUN cp -R /sh_tool/bin/   /root/scripts/flexlm/ver.2.0/
-RUN cp -R /sh_tool/conf/  /root/scripts/flexlm/ver.2.0/
-RUN cp -R /sh_tool/log/   /root/scripts/flexlm/ver.2.0/
+RUN cp -R /sh_tool/bin/   /root/scripts/flexlm/ver.3.0/
+RUN cp -R /sh_tool/conf/  /root/scripts/flexlm/ver.3.0/
+RUN cp -R /sh_tool/log/   /root/scripts/flexlm/ver.3.0/
 RUN rm -Rf /sh_tool/
-RUN chmod -R 755 /root/scripts/flexlm/ver.2.0/
-RUN ln -s /root/scripts/flexlm/ver.2.0/bin/flexlm.sh /root/bin/flexlm
-RUN tree /root/scripts/flexlm/ver.2.0/
+RUN chmod -R 755 /root/scripts/flexlm/ver.3.0/
+RUN ln -s /root/scripts/flexlm/ver.3.0/bin/flexlm.sh /root/bin/flexlm
+RUN tree /root/scripts/flexlm/ver.3.0/
