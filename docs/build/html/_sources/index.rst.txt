@@ -46,11 +46,11 @@ To install **flexlm** type the following
 
 .. code-block:: bash
 
-   tar xvzf flexlm-x.y.tar.gz
-   cd flexlm-x.y
-   cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.x.y/
-   cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.x.y/
-   cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.x.y/
+   tar xvzf flexlm-3.0.tar.gz
+   cd flexlm-3.0
+   cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.3.0/
+   cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.3.0/
+   cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.3.0/
 
 Or You can use Docker to create image/container.
 
@@ -71,9 +71,7 @@ Shell tool structure
 
    sh_tool/
    ├── bin/
-   │   ├── center.sh
    │   ├── check_license.sh
-   │   ├── display_logo.sh
    │   ├── flexlm.sh
    │   ├── load_licenses.sh
    │   ├── start_license.sh
@@ -97,7 +95,7 @@ Copyright and licence
 .. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
 
-Copyright (C) 2016 - 2024 by `vroncevic.github.io/flexlm <https://vroncevic.github.io/flexlm>`_
+Copyright (C) 2016 - 2026 by `vroncevic.github.io/flexlm <https://vroncevic.github.io/flexlm>`_
 
 **flexlm** is free software; you can redistribute it and/or modify it
 under the same terms as Bash itself, either Bash version 4.2.47 or,

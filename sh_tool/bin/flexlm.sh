@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   FlexLM Manager
-# @version ver.2.0
+# @version ver.3.0
 # @date    Sun Nov 21 11:40:40 CET 2021
 # @company None, free software to use 2021
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
@@ -21,20 +21,16 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/load_conf.sh
 .    ${UTIL}/bin/load_util_conf.sh
 .    ${UTIL}/bin/progress_bar.sh
+.    ${UTIL}/bin/display_logo.sh
 
 FLEXLM_TOOL=flexlm
-FLEXLM_VERSION=ver.2.0
+FLEXLM_VERSION=ver.3.0
 FLEXLM_HOME=${UTIL_ROOT}/${FLEXLM_TOOL}/${FLEXLM_VERSION}
 FLEXLM_CFG=${FLEXLM_HOME}/conf/${FLEXLM_TOOL}.cfg
 FLEXLM_UTIL_CFG=${FLEXLM_HOME}/conf/${FLEXLM_TOOL}_util.cfg
 FLEXLM_LOGO=${FLEXLM_HOME}/conf/${FLEXLM_TOOL}.logo
 FLEXLM_LOG=${FLEXLM_HOME}/log
 
-tabs 4
-CONSOLE_WIDTH=$(stty size | awk '{print $2}')
-
-.    ${FLEXLM_HOME}/bin/center.sh
-.    ${FLEXLM_HOME}/bin/display_logo.sh
 .    ${FLEXLM_HOME}/bin/check_license.sh
 .    ${FLEXLM_HOME}/bin/load_licenses.sh
 .    ${FLEXLM_HOME}/bin/start_license.sh
@@ -83,8 +79,8 @@ TOOL_NOTIFY="false"
 #
 function __flexlm {
     local OP=$1 VLIC=$2
-    display_logo
     if [[ -n "${OP}" && -n "${VLIC}" ]]; then
+        display_logo "vroncevic" "${FLEXLM_TOOL}" "${FLEXLM_VERSION}" "${FLEXLM_LOGO}"
         local FUNC=${FUNCNAME[0]} MSG="None"
         local STATUS_CONF STATUS_CONF_UTIL STATUS
         MSG="Loading basic and util configuration!"

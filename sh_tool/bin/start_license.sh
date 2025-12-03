@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   FlexLM Manager
-# @version ver.2.0
+# @version ver.3.0
 # @date    Sun Nov 21 11:40:40 CET 2021
 # @company None, free software to use 2021
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
