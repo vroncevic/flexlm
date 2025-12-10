@@ -36,11 +36,11 @@ Navigate to release **[page](https://github.com/vroncevic/flexlm/releases)** dow
 To install **flexlm** type the following
 
 ```bash
-tar xvzf flexlm-3.0.tar.gz
-cd flexlm-3.0
-cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.3.0/
-cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.3.0/
-cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.3.0/
+tar xvzf flexlm-4.0.tar.gz
+cd flexlm-4.0
+cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.4.0/
+cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.4.0/
+cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.4.0/
 ```
 
 Self generated setup script and execution
@@ -57,7 +57,7 @@ Self generated setup script and execution
 [setup] create symbolic link of App/Tool/Script
 [setup] done
 
-/root/scripts/flexlm/ver.3.0/
+/root/scripts/flexlm/ver.4.0/
 ├── bin
 │   ├── check_license.sh
 │   ├── flexlm.sh
@@ -73,7 +73,7 @@ Self generated setup script and execution
     └── flexlm.log
 
 4 directories, 10 files
-lrwxrwxrwx 1 root root 42 Dec  3 19:35 /root/bin/flexlm -> /root/scripts/flexlm/ver.3.0/bin/flexlm.sh
+lrwxrwxrwx 1 root root 42 Dec  3 19:35 /root/bin/flexlm -> /root/scripts/flexlm/ver.4.0/bin/flexlm.sh
 ```
 
 Or You can use docker to create image/container.
@@ -82,7 +82,7 @@ Or You can use docker to create image/container.
 
 ```bash
 # Create symlink for shell tool
-ln -s /root/scripts/flexlm/ver.3.0/bin/flexlm.sh /root/bin/flexlm
+ln -s /root/scripts/flexlm/ver.4.0/bin/flexlm.sh /root/bin/flexlm
 
 # Setting PATH
 export PATH=${PATH}:/root/bin/
@@ -90,7 +90,7 @@ export PATH=${PATH}:/root/bin/
 # Start Cadence License Server
 flexlm 
 
-flexlm ver.3.0
+flexlm ver.4.0
 Wed Dec  3 07:36:18 PM CET 2025
 
 [check_root] Check permission for current session? [ok]
@@ -107,7 +107,7 @@ Wed Dec  3 07:36:18 PM CET 2025
     ░░   ░░░  ░░░░░░ ░░   ░░ ░░░ ░░░  ░░  ░░   
                                                
 	                             
-	Info   github.io/flexlm ver.3.0
+	Info   github.io/flexlm ver.4.0
 	Issue  github.io/issue
 	Author vroncevic.github.io
 
@@ -159,7 +159,7 @@ More documentation and info at
 
 ### Copyright and licence
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-4.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Copyright (C) 2016 - 2026 by [vroncevic.github.io/flexlm](https://vroncevic.github.io/flexlm)
 
