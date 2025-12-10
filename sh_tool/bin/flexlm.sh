@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   FlexLM Manager
-# @version ver.3.0
+# @version ver.4.0
 # @date    Sun Nov 21 11:40:40 CET 2021
 # @company None, free software to use 2021
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
@@ -11,8 +11,6 @@ UTIL_VERSION=ver.1.0
 UTIL=${UTIL_ROOT}/sh_util/${UTIL_VERSION}
 UTIL_LOG=${UTIL}/log
 
-.    ${UTIL}/bin/devel.sh
-.    ${UTIL}/bin/usage.sh
 .    ${UTIL}/bin/hash.sh
 .    ${UTIL}/bin/check_op.sh
 .    ${UTIL}/bin/check_root.sh
@@ -24,7 +22,7 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/display_logo.sh
 
 FLEXLM_TOOL=flexlm
-FLEXLM_VERSION=ver.3.0
+FLEXLM_VERSION=ver.4.0
 FLEXLM_HOME=${UTIL_ROOT}/${FLEXLM_TOOL}/${FLEXLM_VERSION}
 FLEXLM_CFG=${FLEXLM_HOME}/conf/${FLEXLM_TOOL}.cfg
 FLEXLM_UTIL_CFG=${FLEXLM_HOME}/conf/${FLEXLM_TOOL}_util.cfg
@@ -57,6 +55,13 @@ declare -A PB_STRUCTURE=(
     [SLEEP]=0.01
 )
 
+declare -A FLEXLM_LOGO_DATA=(
+    [OWNER]="vroncevic"
+    [REPO]="${FLEXLM_TOOL}"
+    [VERSION]="${FLEXLM_VERSION}"
+    [LOGO]="${FLEXLM_LOGO}"
+)
+
 TOOL_DBG="false"
 TOOL_LOG="false"
 TOOL_NOTIFY="false"
@@ -80,7 +85,7 @@ TOOL_NOTIFY="false"
 function __flexlm {
     local OP=$1 VLIC=$2
     if [[ -n "${OP}" && -n "${VLIC}" ]]; then
-        display_logo "vroncevic" "${FLEXLM_TOOL}" "${FLEXLM_VERSION}" "${FLEXLM_LOGO}"
+        display_logo FLEXLM_LOGO_DATA
         local FUNC=${FUNCNAME[0]} MSG="None"
         local STATUS_CONF STATUS_CONF_UTIL STATUS
         MSG="Loading basic and util configuration!"

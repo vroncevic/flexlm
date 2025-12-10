@@ -46,11 +46,11 @@ To install **flexlm** type the following
 
 .. code-block:: bash
 
-   tar xvzf flexlm-3.0.tar.gz
-   cd flexlm-3.0
-   cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.3.0/
-   cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.3.0/
-   cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.3.0/
+   tar xvzf flexlm-4.0.tar.gz
+   cd flexlm-4.0
+   cp -R ~/sh_tool/bin/   /root/scripts/flexlm/ver.4.0/
+   cp -R ~/sh_tool/conf/  /root/scripts/flexlm/ver.4.0/
+   cp -R ~/sh_tool/log/   /root/scripts/flexlm/ver.4.0/
 
 Or You can use Docker to create image/container.
 
@@ -90,7 +90,7 @@ Copyright and licence
 |License: GPL v3| |License: Apache 2.0|
 
 .. |License: GPL v3| image:: https://img.shields.io/badge/License-GPLv3-blue.svg
-   :target: https://www.gnu.org/licenses/gpl-3.0
+   :target: https://www.gnu.org/licenses/gpl-4.0
 
 .. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
